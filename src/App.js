@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Favorited from './components/Favorited/Favorited';
+import ImageDetail from './components/ImageDetail/ImageDetail';
 import RecentlyAdded from './components/RecentlyAdded/RecentlyAdded';
 import Main from './layout/Main';
 
@@ -13,6 +14,13 @@ function App() {
           return fetch('https://agencyanalytics-api.vercel.app/images.json');
         },
         element: <RecentlyAdded></RecentlyAdded>
+      },
+      {
+        path:'/image/:imageId',
+        loader: async({params}) =>{
+          return fetch(`https://agencyanalytics-api.vercel.app/images.json/${params.imageId}`)
+        },
+        element: <ImageDetail></ImageDetail>
       },
       { path: '/favorited', element: <Favorited></Favorited>}
     ]}

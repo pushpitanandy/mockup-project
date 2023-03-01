@@ -1,4 +1,17 @@
+.image{
+    margin-bottom: 30px;
+}
+
 .image img{
     width: 200px;
     height: 150px;
+    border-radius: 10px;
+}
+
+.image h5{
+    margin: 0px;
+}
+
+#fileSize{
+    color: gray;
 }

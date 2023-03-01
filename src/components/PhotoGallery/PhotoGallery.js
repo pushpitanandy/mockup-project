@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ImageDetail from '../ImageDetail/ImageDetail';
 import './PhotoGallery.css';
 
 const PhotoGallery = () => {
@@ -17,6 +18,7 @@ const PhotoGallery = () => {
             {/* photo detail section */}
             <div className='photo-details'>
                 <h3>Detail section</h3>
+                
             </div>
         </div>
     );
