@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './PhotoGallery.css';
 
 const PhotoGallery = () => {
@@ -8,8 +9,8 @@ const PhotoGallery = () => {
             <div className='photos-section'>
                 <h1>Photos</h1>
                 <nav className='navbar'>
-                    <a href="/recent">Recently Added</a>
-                    <a href="/favorited">Favorited</a>
+                    <Link to='/recent' className='nav-link'>Recently Added</Link>
+                    <Link to='/favorited' className='nav-link'>Favorited</Link>
                 </nav>
             </div>
            
