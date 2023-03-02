@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import ImageDetail from '../ImageDetail/ImageDetail';
 import './PhotoGallery.css';
 
@@ -13,6 +13,7 @@ const PhotoGallery = () => {
                     <Link to='/recent' className='nav-link'>Recently Added</Link>
                     <Link to='/favorited' className='nav-link'>Favorited</Link>
                 </nav>
+                <Outlet></Outlet>
             </div>
            
             {/* photo detail section */}
@@ -20,6 +21,8 @@ const PhotoGallery = () => {
                 <h3>Detail section</h3>
                 
             </div>
+
+            
         </div>
     );
 };
