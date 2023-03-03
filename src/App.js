@@ -15,8 +15,15 @@ function App() {
         },
         element: <RecentlyAdded></RecentlyAdded>
       },
+      { 
+        path: '/recent', 
+        loader: async () => {
+          return fetch('https://agencyanalytics-api.vercel.app/images.json');
+        },
+        element: <RecentlyAdded></RecentlyAdded>
+      },
       {
-        path:'/image/:imageId',
+        path:'/recent/:imageId',
         loader: async({params}) =>{
           return fetch(`https://agencyanalytics-api.vercel.app/images.json/${params.imageId}`)
         },
@@ -25,7 +32,7 @@ function App() {
       { path: '/favorited', element: <Favorited></Favorited>}
     ]}
     
-  ])
+  ]);
   return (
     <div>
         

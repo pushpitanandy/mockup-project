@@ -11,17 +11,22 @@
     border-right: solid rgb(243, 243, 243);
 }
 
+/* navbar section showing active link */
 .navbar{
     padding-bottom: 10px;
     border-bottom: solid rgb(235, 235, 235);
 }
 
-/* .nav-link.active{
+.active{
     color: blueviolet;
     border-bottom: solid blueviolet;
-} */
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 30px;
+    padding-bottom: 10px;
+}
 
-.nav-link{
+.pending{
     color: gray;
     text-decoration: none;
     font-weight: 500;
