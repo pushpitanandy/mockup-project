@@ -11,3 +11,8 @@
 #fileSize{
     color: gray;
 }
+
+.image button{
+    border: none;
+    padding: 0px;
+}

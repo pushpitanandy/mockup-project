@@ -2,35 +2,22 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Favorited from './components/Favorited/Favorited';
 import ImageDetail from './components/ImageDetail/ImageDetail';
-import RecentlyAdded from './components/RecentlyAdded/RecentlyAdded';
-import Main from './layout/Main';
+import PhotoGallery from './components/PhotoGallery/PhotoGallery';
+
 
 function App() {
   const router = createBrowserRouter([
-    { path: '/', element: <Main></Main>, children: [
-      { 
+    // { path: '/', element: <PhotoGallery></PhotoGallery>},
+    { 
         path: '/', 
         loader: async () => {
           return fetch('https://agencyanalytics-api.vercel.app/images.json');
         },
-        element: <RecentlyAdded></RecentlyAdded>
-      },
-      { 
-        path: '/recent', 
-        loader: async () => {
-          return fetch('https://agencyanalytics-api.vercel.app/images.json');
-        },
-        element: <RecentlyAdded></RecentlyAdded>
-      },
-      {
-        path:'/recent/:imageId',
-        loader: async({params}) =>{
-          return fetch(`https://agencyanalytics-api.vercel.app/images.json/${params.imageId}`)
-        },
-        element: <ImageDetail></ImageDetail>
-      },
-      { path: '/favorited', element: <Favorited></Favorited>}
-    ]}
+        element: <PhotoGallery></PhotoGallery>
+     },
+     
+    { path: '/favorited', element: <Favorited></Favorited>}
+    
     
   ]);
   return (

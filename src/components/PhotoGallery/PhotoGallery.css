@@ -34,8 +34,24 @@
     padding-bottom: 10px;
 }
 
+/* to display images */
+.images{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 20px;
+}
+
 
 /* details section */
 .photo-details{
-    padding: 10px 30px;
+    margin: 0 auto;
+    padding: 50px;
 }
+
+.photo-details img{
+    width: 350px;
+    height: 250px;
+    
+}
+

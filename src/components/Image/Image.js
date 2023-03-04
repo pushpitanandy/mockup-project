@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Image.css';
 
-const Image = ({image}) => {
-    const {id, url, filename, sizeInBytes} = image;
+const Image = (props) => {
+    const {image, imageClicked} = props;
+    const {url, filename, sizeInBytes} = image;
     const fileSize = (sizeInBytes * 0.000001).toFixed(1);
+   
     return (
         <div className='image'>
-            <Link to={`/recent/${id}`}><img src={url}></img></Link>
+            <button onClick={()=>{imageClicked(image)}}><img src={url}></img></button>
             <h5>{filename}</h5>
             <h5 id='fileSize'>{fileSize} MB</h5>
         </div>
