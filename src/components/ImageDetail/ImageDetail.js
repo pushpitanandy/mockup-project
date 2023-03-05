@@ -1,45 +1,50 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
+import './ImageDetail.css';
 
 const ImageDetail = ({detail, formatDate}) => {
-    
-    console.log(detail);
+
+    const {url, filename, sizeInBytes, uploadedBy, createdAt, updatedAt, dimensions, resolution, description} = detail;
     return (
-        <div>
-           <img src={detail.url}></img>
-                <div>
-                    <h3>{detail.filename}</h3>
-                </div>
-                <h5>{(detail.sizeInBytes * 0.000001).toFixed(1)} MB</h5>
+        <div className='detail'>
+                <img src={url}></img>
+                <div className='nameAndHeart'>
+                    <h3 id='imageName'>{filename}</h3>
+                    <FontAwesomeIcon icon={faHeart} className='heartIcon'/>
+               </div>
+                <h5 id='fileSize'>{(sizeInBytes * 0.000001).toFixed(1)} MB</h5>
                 
                 <div className='informationSection'>
                     <h3>Information</h3>
-                    <div>
+                    <div id='uploadedBy'>
                         <h5>Uploaded by</h5>
-                        <p>{detail.uploadedBy}</p>
+                        <p>{uploadedBy}</p>
                     </div>
                     <div>
                         <h5>Created</h5>
-                        <p>{formatDate(detail.createdAt)}</p>
+                        <p>{formatDate(createdAt)}</p>
                     </div>
                     <div>
                         <h5>Last modified</h5>
-                        <p>{formatDate(detail.updatedAt)}</p>
+                        <p>{formatDate(updatedAt)}</p>
                     </div>
                     <div>
                         <h5>Dimensions</h5>
-                        <p>{detail.dimensions.width} x {detail.dimensions.height}</p>
+                        <p>{dimensions.width} x {dimensions.height}</p>
                     </div>
                     <div>
                         <h5>Resolution</h5>
-                        <p>{detail.resolution.width} x {detail.resolution.height}</p>
+                        <p>{resolution.width} x {resolution.height}</p>
                     </div>
                 </div>
                 
-                <div>
+                <div id='description'>
                     <h3>Description</h3>
-                    <p>{detail.description}</p>
+                    {description ? <p>{description}</p> : <p>Not available</p>}
                 </div>
-                <button>Delete</button>
+                <button id='deleteBtn'>Delete</button>
+                
         </div>
     );
 };

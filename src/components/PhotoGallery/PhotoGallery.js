@@ -24,9 +24,9 @@ const PhotoGallery = () => {
     // handle click on images 
     
     const [detail, setDetail] = useState(allImages[0]);
-
+   
     const imageClicked = clickedImg =>{
-        setDetail(clickedImg);        
+        setDetail(clickedImg);    
      }
 
     // function to format dates
