@@ -23,14 +23,11 @@ const PhotoGallery = () => {
    
     // handle click on images 
     
-    const [detail, setDetail] = useState({});
+    const [detail, setDetail] = useState(allImages[0]);
 
     const imageClicked = clickedImg =>{
-        // console.log(clickedImg); 
-        setDetail(clickedImg);       
+        setDetail(clickedImg);        
      }
-
-    const fileSize = (detail.sizeInBytes * 0.000001).toFixed(1);
 
     // function to format dates
     const formatDate = (dateString) => {
@@ -39,9 +36,6 @@ const PhotoGallery = () => {
         return date.toLocaleDateString('en-US', options);
       };
       
-      const formattedCreatedDate = formatDate(detail.createdAt);
-      const formattedUpdatedDate = formatDate(detail.updatedAt);
-    
     return (
         <div className='photo-gallery'>
             {/* photos section */}
@@ -65,45 +59,11 @@ const PhotoGallery = () => {
            
             {/* photo detail section */}
             <div className='photo-details'>
-                {/* {
-                    <ImageDetail
-                    
-                    ></ImageDetail>
-                } */}
-
-                <img src={detail.url}></img>
-                <div>
-                    <h3>{detail.filename}</h3>
-                </div>
-                <h5>{fileSize}</h5>
-                <div className='informationSection'>
-                    <h3>Information</h3>
-                    <div>
-                        <h5>Uploaded by</h5>
-                        <p>{detail.uploadedBy}</p>
-                    </div>
-                    <div>
-                        <h5>Created</h5>
-                        <p>{formattedCreatedDate}</p>
-                    </div>
-                    <div>
-                        <h5>Last modified</h5>
-                        <p>{formattedUpdatedDate}</p>
-                    </div>
-                    <div>
-                        <h5>Dimensions</h5>
-                        <p>{detail.dimensions.width} x {detail.dimensions.height}</p>
-                    </div>
-                    <div>
-                        <h5>Resolution</h5>
-                        <p>{detail.resolution.width} x {detail.resolution.height}</p>
-                    </div>
-                </div>
-                <div>
-                    <h3>Description</h3>
-                    <p>{detail.description}</p>
-                </div>
-                <button>Delete</button>
+                <ImageDetail 
+                    detail={detail}
+                    formatDate={formatDate}
+                ></ImageDetail>
+                 
             </div>
 
             
