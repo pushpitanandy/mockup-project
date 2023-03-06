@@ -35,7 +35,29 @@ const PhotoGallery = () => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return date.toLocaleDateString('en-US', options);
       };
-      
+    
+     // to handle click on heart symbol
+     const [list, setList] = useState(allImages);
+     
+     const heartClicked = (id) =>{
+        setList((prevList) =>{
+            const updatedList = prevList.map((item) => {
+                if (item.id === id) {
+                  return { ...item, favorited: !item.favorited };
+                }
+                return item;
+              });
+              return updatedList;
+        });
+     }  
+
+     //to handle delete button
+     const deleteClicked = (id) =>{
+        const remaining = list.filter(photo => photo.id!==id);
+        setList(remaining);
+        setDetail(remaining[0]);
+     }
+
     return (
         <div className='photo-gallery'>
             {/* photos section */}
@@ -48,7 +70,7 @@ const PhotoGallery = () => {
                 
                 <div className='images'>
                 {
-                allImages.map(image => <Image
+                list.map(image => <Image
                     key={image.id}
                     image={image}
                     imageClicked={imageClicked}
@@ -62,6 +84,8 @@ const PhotoGallery = () => {
                 <ImageDetail 
                     detail={detail}
                     formatDate={formatDate}
+                    heartClicked={heartClicked}
+                    deleteClicked={deleteClicked}
                 ></ImageDetail>
                  
             </div>

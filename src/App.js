@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Favorited from './components/Favorited/Favorited';
-import ImageDetail from './components/ImageDetail/ImageDetail';
 import PhotoGallery from './components/PhotoGallery/PhotoGallery';
 
 

@@ -1,17 +1,23 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, { useState } from 'react';
 import './ImageDetail.css';
 
-const ImageDetail = ({detail, formatDate}) => {
+const ImageDetail = ({detail, formatDate, heartClicked, deleteClicked}) => {
 
-    const {url, filename, sizeInBytes, uploadedBy, createdAt, updatedAt, dimensions, resolution, description} = detail;
+    const {id, url, filename, sizeInBytes, uploadedBy, createdAt, updatedAt, dimensions, resolution, description, favorited} = detail;
+    
+    const [isFavorited, setIsFavorited] = useState(favorited);
+
     return (
         <div className='detail'>
                 <img src={url}></img>
                 <div className='nameAndHeart'>
                     <h3 id='imageName'>{filename}</h3>
-                    <FontAwesomeIcon icon={faHeart} className='heartIcon'/>
+                    {isFavorited ?
+                        <FontAwesomeIcon icon={faHeart} className='redHeartIcon' onClick={()=>{heartClicked(id)}}/> 
+                        : 
+                        <FontAwesomeIcon icon={faHeart} className='greyHeartIcon' onClick={()=>{heartClicked(id)}}/>}
                </div>
                 <h5 id='fileSize'>{(sizeInBytes * 0.000001).toFixed(1)} MB</h5>
                 
@@ -43,7 +49,7 @@ const ImageDetail = ({detail, formatDate}) => {
                     <h3>Description</h3>
                     {description ? <p>{description}</p> : <p>Not available</p>}
                 </div>
-                <button id='deleteBtn'>Delete</button>
+                <button id='deleteBtn' onClick={()=>{deleteClicked(id)}}>Delete</button>
                 
         </div>
     );

@@ -5,9 +5,11 @@ import ImageDetail from '../ImageDetail/ImageDetail';
 
 const Favorited = () => {
     const images = useLoaderData();
+
+    const [list, setList] = useState(images);
    
     // to sort the images by using favorited
-    const favoritedImages = images.filter(img => img.favorited);
+    const favoritedImages = list.filter(img => img.favorited);
     
     // handle click on images 
     
@@ -24,6 +26,27 @@ const Favorited = () => {
         return date.toLocaleDateString('en-US', options);
       };
       
+       // to handle click on heart symbol
+      
+       const heartClicked = (id) =>{
+            setList((prevList) =>{
+                const updatedList = prevList.map((item) => {
+                    if (item.id === id) {
+                      return { ...item, favorited: !item.favorited };
+                    }
+                    return item;
+                  });
+                  return updatedList;
+            });
+     }
+
+          //to handle delete button
+          const deleteClicked = (id) =>{
+            const remaining = favoritedImages.filter(photo => photo.id!==id);
+            setList(remaining);
+            setDetail(remaining[0]);
+         }
+    
     return (
         <div className='photo-gallery'>
             {/* photos section */}
@@ -50,6 +73,8 @@ const Favorited = () => {
                 <ImageDetail 
                     detail={detail}
                     formatDate={formatDate}
+                    heartClicked={heartClicked}
+                    deleteClicked={deleteClicked}
                 ></ImageDetail>
                  
             </div>

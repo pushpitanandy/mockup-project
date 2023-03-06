@@ -14,13 +14,18 @@
     align-items: center;
 }
 
-.heartIcon{
+.greyHeartIcon{
     color: rgb(209, 209, 209);
     font-size: 24px;
     margin-top: 15px;
     padding: 0;
-    border-inline: initial;
-    border-inline-color: gray;
+}
+
+.redHeartIcon{
+    color: rgb(190, 0, 0);
+    font-size: 24px;
+    margin-top: 15px;
+    padding: 0;
 }
 
 .detail h5{
