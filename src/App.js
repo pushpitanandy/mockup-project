@@ -16,7 +16,11 @@ function App() {
         element: <PhotoGallery></PhotoGallery>
      },
      
-    { path: '/favorited', element: <Favorited></Favorited>}
+    { path: '/favorited',
+        loader: async () => {
+            return fetch('https://agencyanalytics-api.vercel.app/images.json');
+        },
+       element: <Favorited></Favorited>}
     
     
   ]);
