@@ -9,12 +9,8 @@ const PhotoGallery = () => {
     const images = useLoaderData();
    
     // to sort the images by using createdAt
-    const allImages = [];
-
-    images.forEach((img) => {
-    allImages.push(img);
-    });
-
+    const allImages = [...images];
+    
     allImages.sort((a,b) =>{
         const imgA = new Date(a.createdAt).getTime();
         const imgB = new Date(b.createdAt).getTime();
@@ -39,17 +35,24 @@ const PhotoGallery = () => {
      // to handle click on heart symbol
      const [list, setList] = useState(allImages);
      
-     const heartClicked = (id) =>{
-        setList((prevList) =>{
-            const updatedList = prevList.map((item) => {
-                if (item.id === id) {
-                  return { ...item, favorited: !item.favorited };
-                }
-                return item;
-              });
-              return updatedList;
+     const heartClicked = (id) => {
+        setList((prevList) => {
+          const updatedList = prevList.map((item) => {
+            if (item.id === id) {
+              return { ...item, favorited: !item.favorited };
+            }
+            return item;
+          });
+          return updatedList;
         });
-     }  
+        if (id === detail.id) {
+          setDetail((prevDetail) => ({
+            ...prevDetail,
+            favorited: !prevDetail.favorited,
+          }));
+        }
+      };
+      
 
      //to handle delete button
      const deleteClicked = (id) =>{

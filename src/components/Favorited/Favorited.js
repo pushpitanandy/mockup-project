@@ -26,20 +26,25 @@ const Favorited = () => {
         return date.toLocaleDateString('en-US', options);
       };
       
-       // to handle click on heart symbol
-      
-       const heartClicked = (id) =>{
-            setList((prevList) =>{
-                const updatedList = prevList.map((item) => {
-                    if (item.id === id) {
-                      return { ...item, favorited: !item.favorited };
-                    }
-                    return item;
-                  });
-                  return updatedList;
-            });
-     }
-
+    // to handle click on heart symbol
+   
+    const heartClicked = (id) => {
+        setList((prevList) => {
+          const updatedList = prevList.map((item) => {
+            if (item.id === id) {
+              return { ...item, favorited: !item.favorited };
+            }
+            return item;
+          });
+          return updatedList;
+        });
+        if (id === detail.id) {
+          setDetail((prevDetail) => ({
+            ...prevDetail,
+            favorited: !prevDetail.favorited,
+          }));
+        }
+      };
           //to handle delete button
           const deleteClicked = (id) =>{
             const remaining = favoritedImages.filter(photo => photo.id!==id);

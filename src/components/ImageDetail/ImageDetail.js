@@ -6,15 +6,13 @@ import './ImageDetail.css';
 const ImageDetail = ({detail, formatDate, heartClicked, deleteClicked}) => {
 
     const {id, url, filename, sizeInBytes, uploadedBy, createdAt, updatedAt, dimensions, resolution, description, favorited} = detail;
-    
-    const [isFavorited, setIsFavorited] = useState(favorited);
-
+   
     return (
         <div className='detail'>
                 <img src={url}></img>
                 <div className='nameAndHeart'>
                     <h3 id='imageName'>{filename}</h3>
-                    {isFavorited ?
+                    {favorited ?
                         <FontAwesomeIcon icon={faHeart} className='redHeartIcon' onClick={()=>{heartClicked(id)}}/> 
                         : 
                         <FontAwesomeIcon icon={faHeart} className='greyHeartIcon' onClick={()=>{heartClicked(id)}}/>}
