@@ -1,12 +1,37 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
+import React from 'react';
 import './ImageDetail.css';
 
-const ImageDetail = ({detail, formatDate, heartClicked, deleteClicked}) => {
-
-    const {id, url, filename, sizeInBytes, uploadedBy, createdAt, updatedAt, dimensions, resolution, description, favorited} = detail;
-   
+interface Props {
+    detail: {
+      id: number;
+      url: string;
+      filename: string;
+      sizeInBytes: number;
+      uploadedBy: string;
+      createdAt: string;
+      updatedAt: string;
+      dimensions: {
+        width: number;
+        height: number;
+      };
+      resolution: {
+        width: number;
+        height: number;
+      };
+      description?: string;
+      favorited: boolean;
+    };
+    formatDate: (date: string) => string;
+    heartClicked: (id: number) => void;
+    deleteClicked: (id: number) => void;
+  }
+  
+  const ImageDetail = ({ detail, formatDate, heartClicked, deleteClicked }: Props) => {
+    
+    const { id, url, filename, sizeInBytes, uploadedBy, createdAt, updatedAt, dimensions, resolution, description, favorited } = detail;
+  
     return (
         <div className='detail'>
                 <img src={url}></img>

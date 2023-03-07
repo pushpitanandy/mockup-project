@@ -6,27 +6,26 @@ import PhotoGallery from './components/PhotoGallery/PhotoGallery';
 
 function App() {
   const router = createBrowserRouter([
-    // { path: '/', element: <PhotoGallery></PhotoGallery>},
+    
     { 
         path: '/', 
         loader: async () => {
           return fetch('https://agencyanalytics-api.vercel.app/images.json');
         },
-        element: <PhotoGallery></PhotoGallery>
+        element: <PhotoGallery />
      },
      
     { path: '/favorited',
         loader: async () => {
             return fetch('https://agencyanalytics-api.vercel.app/images.json');
         },
-       element: <Favorited></Favorited>}
-    
-    
+       element: <Favorited />
+      }   
   ]);
   return (
     <div>
         
-        <RouterProvider router={router}></RouterProvider>
+        <RouterProvider router={router} />
     </div>
   );
 }

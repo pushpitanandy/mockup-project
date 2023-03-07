@@ -48,3 +48,39 @@
     margin: 0 auto;
     padding: 50px;
 }
+
+/* For Responsiveness */
+@media only screen and (max-width: 768px) {
+    /* modify the grid layout to display only two images per row */
+    .images {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    /* modify the grid layout to display only one image per row */
+    .images {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    
+    /* adjust the padding of the photos section to fit the smaller screen size */
+    .photos-section {
+      padding: 10px;
+    }
+    
+    /* adjust the font size and padding of the navbar links to fit the smaller screen size */
+    .navbar {
+      font-size: 14px;
+    }
+    
+    .active,
+    .pending {
+      margin-right: 10px;
+      padding-bottom: 5px;
+    }
+    
+    /* adjust the padding of the photo details section to fit the smaller screen size */
+    .photo-details {
+      padding: 20px;
+    }
+  }

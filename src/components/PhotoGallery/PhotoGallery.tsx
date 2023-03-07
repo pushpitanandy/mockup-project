@@ -2,33 +2,64 @@ import React, { useState } from 'react';
 import { NavLink, useLoaderData } from 'react-router-dom';
 import Image from '../Image/Image';
 import ImageDetail from '../ImageDetail/ImageDetail';
+import './PhotoGallery.css';
 
-const Favorited = () => {
-    const images = useLoaderData();
+interface ObjectType {
+  id: number;
+      url: string;
+      filename: string;
+      sizeInBytes: number;
+      uploadedBy: string;
+      createdAt: string;
+      updatedAt: string;
+      dimensions: {
+        width: number;
+        height: number;
+      };
+      resolution: {
+        width: number;
+        height: number;
+      };
+      description?: string;
+      favorited: boolean;
+}
 
-    const [list, setList] = useState(images);
+const PhotoGallery = () => {
    
-    // to sort the images by using favorited
-    const favoritedImages = list.filter(img => img.favorited);
+    const images: ObjectType[] = useLoaderData() as ObjectType[];
+   
+    // to sort the images by using createdAt
+    const allImages = images ? [...images] : [];
     
+    allImages.sort((a,b) =>{
+        const imgA = new Date(a.createdAt).getTime();
+        const imgB = new Date(b.createdAt).getTime();
+        return imgB-imgA;
+    });
+   
     // handle click on images 
     
-    const [detail, setDetail] = useState(favoritedImages[0]);
+    const [detail, setDetail] = useState(allImages[0]);
    
-    const imageClicked = clickedImg =>{
+    const imageClicked = (clickedImg: ObjectType) =>{
         setDetail(clickedImg);    
      }
 
     // function to format dates
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-      };
-      
-    // to handle click on heart symbol
-   
-    const heartClicked = (id) => {
+    const formatDate = (dateString: string) => {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        // handle invalid date
+        return "";
+      }
+      const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      return formattedDate;
+    };
+    
+     // to handle click on heart symbol
+     const [list, setList] = useState(allImages);
+     
+     const heartClicked = (id: number) => {
         setList((prevList) => {
           const updatedList = prevList.map((item) => {
             if (item.id === id) {
@@ -45,13 +76,15 @@ const Favorited = () => {
           }));
         }
       };
-          //to handle delete button
-          const deleteClicked = (id) =>{
-            const remaining = favoritedImages.filter(photo => photo.id!==id);
-            setList(remaining);
-            setDetail(remaining[0]);
-         }
-    
+      
+
+     //to handle delete button
+     const deleteClicked = (id: number) =>{
+        const remaining = list.filter(photo => photo.id!==id);
+        setList(remaining);
+        setDetail(remaining[0]);
+     }
+
     return (
         <div className='photo-gallery'>
             {/* photos section */}
@@ -64,7 +97,7 @@ const Favorited = () => {
                 
                 <div className='images'>
                 {
-                favoritedImages.map(image => <Image
+                list.map(image => <Image
                     key={image.id}
                     image={image}
                     imageClicked={imageClicked}
@@ -89,4 +122,4 @@ const Favorited = () => {
     );
 };
 
-export default Favorited;
+export default PhotoGallery;
